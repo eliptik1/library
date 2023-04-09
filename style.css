@@ -4,6 +4,7 @@
     margin: 0;
 }
 
+
 #btn-add {
     cursor: pointer;
     font-size: 2rem;
@@ -13,8 +14,40 @@
 #btn-add:hover{
     background-color: rgb(173, 207, 255);
 }
-
 .main-container {
     text-align: center;
     background-color: rgb(239, 239, 239);
+}
+
+/* Modal screen */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 2;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+#overlay {
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none; 
+}
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;  /*  Avoids clicking the elements underneath the modal container */
 }
