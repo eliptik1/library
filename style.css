@@ -51,3 +51,16 @@
     opacity: 1;
     pointer-events: all;  /*  Avoids clicking the elements underneath the modal container */
 }
+
+/* Books container */
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.book-card {
+    padding: 1rem;
+    border: 1px red solid;
+    background-color: coral;
+}

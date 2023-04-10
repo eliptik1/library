@@ -11,19 +11,26 @@ function modalOn(){
 }
 
 function addBookToLibrary(){
-    let bookName = document.getElementById("title").value
+    let bookName = titleInput.value
     //let bookAuthor = prompt("author:")
     let book1 = {
         "Title": bookName,
         //"Author": bookAuthor,
     }
     myBook.push(book1)
-    const newBook = "<h1>" + `${book1.Title}` + "</h1>"
+    
     displayBooks(book1)
 }
 
 function displayBooks(e){
-    container.innerHTML += "<h1>" + `${e.Title}` + "</h1>"
+    container.innerHTML += `<h1 class="book-card"> <button class="removeBtn">Remove</button>${e.Title}</h1>`;
+    let removeBtns = document.querySelectorAll(".removeBtn")
+    removeBtns.forEach((btn) => {
+        btn.addEventListener("click", (e)=> { 
+            let parent = e.target.closest(".book-card") //Find the closest element that matches the selector ".book-card"
+            parent.remove();
+        })
+    })   
 }
 
 let addBtn = document.querySelector("#btn-add")
@@ -31,6 +38,8 @@ let submitBtn = document.querySelector("#btn-submit")
 let container = document.querySelector(".books-container")
 let modal = document.querySelector(".modal")
 let overlay = document.querySelector("#overlay")
+let titleInput = document.getElementById("title")
+
 
 addBtn.addEventListener("click", modalOn)
 
@@ -43,10 +52,12 @@ submitBtn.addEventListener("click", (e)=> {
     modal.classList.remove("active")
     overlay.classList.remove("active")
     addBookToLibrary()
+    titleInput.value = ""
+    //newBook.classList.add(".book-card")
     e.preventDefault()
 })
 
 //List the default books in the myBook array when the page loads
-for(let i = 0; i < myBook.length; i++){
+/* for(let i = 0; i < myBook.length; i++){
     container.innerHTML += "<h1>" + `${myBook[i].Title}` + "</h1>"
-}
+} */
