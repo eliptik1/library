@@ -15,9 +15,15 @@
 
     
         <div id="modal" class="modal">
-            <h2>my modal</h2>
+            <h2>Add new book</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <button id="btn-close">close</button>
+            <form action="get" action="" id="book-form">
+                <label for="title">Title:</label><br>
+                <input type="text" name="title" id="title"><br>
+                <label for="author">Author:</label><br>
+                <input type="text" name="author" id="author">
+            </form>
+            <button id="btn-submit" form="book-form" type="submit"> Submit </button>
         </div>
         <div id="overlay"></div>
     
