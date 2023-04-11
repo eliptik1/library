@@ -1,4 +1,4 @@
-let myBook = [{"Title":"Atomic Habits","Author":"James Clear"}, {"Title": "Deep Work"}];
+let myBook = [];
 
 // Constructor function
 function Book(){
@@ -12,10 +12,10 @@ function modalOn(){
 
 function addBookToLibrary(){
     let bookName = titleInput.value
-    //let bookAuthor = prompt("author:")
+    let bookAuthor = authorInput.value
     let book1 = {
         "Title": bookName,
-        //"Author": bookAuthor,
+        "Author": bookAuthor,
     }
     myBook.push(book1)
     
@@ -23,12 +23,18 @@ function addBookToLibrary(){
 }
 
 function displayBooks(e){
-    container.innerHTML += `<h1 class="book-card"> <button class="removeBtn">Remove</button>${e.Title}</h1>`;
+    container.innerHTML += `<h1 class="book-card">Title: ${e.Title}<br> Author: ${e.Author}<br> <button class="removeBtn">Remove</button></h1>`;
+    let cards = document.querySelectorAll(".book-card")
+    cards.forEach((card, index) => card.setAttribute("data-index", index))
     let removeBtns = document.querySelectorAll(".removeBtn")
     removeBtns.forEach((btn) => {
-        btn.addEventListener("click", (e)=> { 
-            let parent = e.target.closest(".book-card") //Find the closest element that matches the selector ".book-card"
+        btn.addEventListener("click", (el)=> { 
+            let parent = el.target.closest(".book-card") //Find the closest element that matches the selector ".book-card" (h1)
             parent.remove();
+            let cards = document.querySelectorAll(".book-card") //Re-define the cards nodeList after deletion of a card,
+            cards.forEach((card, index) => card.setAttribute("data-index", index)) //Re-assign index numbers.
+            let bookIndex = parent.getAttribute("data-index")
+            myBook.splice(bookIndex, 1)
         })
     })   
 }
@@ -39,7 +45,7 @@ let container = document.querySelector(".books-container")
 let modal = document.querySelector(".modal")
 let overlay = document.querySelector("#overlay")
 let titleInput = document.getElementById("title")
-
+let authorInput = document.getElementById("author")
 
 addBtn.addEventListener("click", modalOn)
 
@@ -53,7 +59,7 @@ submitBtn.addEventListener("click", (e)=> {
     overlay.classList.remove("active")
     addBookToLibrary()
     titleInput.value = ""
-    //newBook.classList.add(".book-card")
+    authorInput.value = ""
     e.preventDefault()
 })
 
