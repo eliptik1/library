@@ -1,8 +1,9 @@
 let myBook = [];
 
 // Constructor function
-function Book(){
-
+function Book(title, author){
+        this.Title = title;
+        this.Author = author;
 }
 
 function modalOn(){
@@ -13,12 +14,8 @@ function modalOn(){
 function addBookToLibrary(){
     let bookName = titleInput.value
     let bookAuthor = authorInput.value
-    let book1 = {
-        "Title": bookName,
-        "Author": bookAuthor,
-    }
+    let book1 = new Book(bookName, bookAuthor)
     myBook.push(book1)
-    
     displayBooks(book1)
 }
 
