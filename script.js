@@ -18,17 +18,21 @@ function addBookToLibrary(){
     let isRead = isReadInput.checked
     let book1 = new Book(bookName, bookAuthor, isRead)
     myBook.push(book1)
-    displayBooks(book1)
+    displayBooks()
 }
 
-function displayBooks(e){
-    container.innerHTML += `<h1 class="book-card">Title: ${e.Title}<br> Author: ${e.Author}<br> Read: ${e.Read}<br> <button class="readBtn">Read</button> <br> <button class="removeBtn">Remove</button></h1>`;
-    let cards = document.querySelectorAll(".book-card")
-    cards.forEach((card, index) => {
-        card.setAttribute("data-index", index)
-        if(myBook[index].Read === true){
-            card.classList.add("read")
-        }
+function displayBooks(){
+    container.innerHTML = "" // clear existing book display
+    for(let i = 0; i < myBook.length; i++){
+        let readStatus = myBook[i].Read ? "read" : "";
+        container.innerHTML += `<h1 class="book-card ${readStatus}">Title: ${myBook[i].Title}<br> Author: ${myBook[i].Author}<br> Read: ${myBook[i].Read}<br> <button class="readBtn">Read</button> <br> <button class="removeBtn">Remove</button></h1>`
+    } 
+
+    let readBtns = document.querySelectorAll(".readBtn")
+    readBtns.forEach((btn, index) => {btn.addEventListener("click", () => { 
+        myBook[index].Read = !myBook[index].Read //Toggle the read status by clicking the button
+        displayBooks()
+        })
     })
 
     let removeBtns = document.querySelectorAll(".removeBtn")
@@ -37,8 +41,9 @@ function displayBooks(e){
             let parent = el.target.closest(".book-card") //Find the closest element that matches the selector ".book-card" (h1)
             parent.remove();
             myBook.splice(index, 1)
+            displayBooks()
         })
-    })   
+    }) 
 }
 
 let addBtn = document.querySelector("#btn-add")
@@ -51,7 +56,6 @@ let authorInput = document.getElementById("author")
 let isReadInput = document.getElementById("read")
 
 addBtn.addEventListener("click", modalOn)
-
 overlay.addEventListener("click", ()=> {
     modal.classList.remove("active")
     overlay.classList.remove("active")
@@ -65,8 +69,3 @@ submitBtn.addEventListener("click", (e)=> {
     authorInput.value = ""
     e.preventDefault()
 })
-
-//List the default books in the myBook array when the page loads
-/* for(let i = 0; i < myBook.length; i++){
-    container.innerHTML += "<h1>" + `${myBook[i].Title}` + "</h1>"
-} */
