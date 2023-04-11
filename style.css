@@ -64,3 +64,8 @@
     border: 1px red solid;
     background-color: coral;
 }
+
+.read {
+    border: 1px rgb(9, 90, 0) solid;
+    background-color: rgb(148, 255, 127);
+}
