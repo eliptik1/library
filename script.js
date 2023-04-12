@@ -1,11 +1,15 @@
-let myBook = [];
+let myBook = [
+    {title: "Atomic Habits", author: "James Clear", pages: 320, read: true},
+    {title: "Deep Work", author: "Cal Newport", pages: 300, read: true},
+    {title: "How To Invent Everything", author: "Ryan North", pages: 464, read: false},
+];
 
 // Constructor function
 function Book(title, author, pages, read){
         this.title = title;
         this.author = author;
-        this.Pages = pages;
-        this.Read = read;
+        this.pages = pages;
+        this.read = read;
 }
 
 function modalOn(){
@@ -30,13 +34,13 @@ function addBookToLibrary(){
 function displayBooks(){
     container.innerHTML = "" // clear existing book display
     for(let i = 0; i < myBook.length; i++){
-        let readStatus = myBook[i].Read ? "read" : "";
-        container.innerHTML += `<h1 class="book-card ${readStatus}">Title: ${myBook[i].title}<br> Author: ${myBook[i].author}<br> Pages: ${myBook[i].Pages}<br> Read: ${myBook[i].Read}<br> <button class="readBtn">Read</button> <br> <button class="removeBtn">Remove</button></h1>`
+        let readStatus = myBook[i].read ? "read" : "";
+        container.innerHTML += `<h1 class="book-card ${readStatus}"> <p>Title: ${myBook[i].title}</p> <p>Author: ${myBook[i].author}</p>  <p>Pages: ${myBook[i].pages}</p>  <p>Read: ${myBook[i].read}</p> <button class="readBtn">Read</button> <button class="removeBtn">Remove</button></h1>`
     } 
 
     let readBtns = document.querySelectorAll(".readBtn")
     readBtns.forEach((btn, index) => {btn.addEventListener("click", () => { 
-        myBook[index].Read = !myBook[index].Read //Toggle the read status by clicking the button
+        myBook[index].read = !myBook[index].read //Toggle the read status by clicking the button
         displayBooks()
         })
     })
@@ -74,3 +78,5 @@ form.addEventListener("submit", (e)=> {
     overlay.classList.remove("active")
     addBookToLibrary()
 })
+
+displayBooks() //Display the default books in the myBook array when the page loads
