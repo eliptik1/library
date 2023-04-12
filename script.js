@@ -47,7 +47,7 @@ function displayBooks(){
 }
 
 let addBtn = document.querySelector("#btn-add")
-let submitBtn = document.querySelector("#btn-submit")
+let form = document.querySelector("#book-form")
 let container = document.querySelector(".books-container")
 let modal = document.querySelector(".modal")
 let overlay = document.querySelector("#overlay")
@@ -61,11 +61,11 @@ overlay.addEventListener("click", ()=> {
     overlay.classList.remove("active")
 })
 
-submitBtn.addEventListener("click", (e)=> {
+form.addEventListener("submit", (e)=> {
+    e.preventDefault()
     modal.classList.remove("active")
     overlay.classList.remove("active")
-    addBookToLibrary()
     titleInput.value = ""
     authorInput.value = ""
-    e.preventDefault()
+    addBookToLibrary()
 })
