@@ -6,6 +6,10 @@
 }
 
 body { 
+    /* Footer fix*/
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     /* Background pattern */
     --s: 50px;
     --c: #f8f0e4;
@@ -47,6 +51,7 @@ header {
     background-color: #eaa760;
 }
 .main-container {
+    
     padding: 1rem 2rem;
 }
 
@@ -60,7 +65,7 @@ header {
     border-radius: 10px;
     z-index: 2;
     background-color: rgb(255, 244, 220);
-    width: 400px;
+    width: min(90%, 350px);
     transition: all 0.3s ease;
     font-size: 1rem;
     font-weight: 600;
@@ -180,7 +185,6 @@ header {
     background-color: rgba(157, 255, 132, 0.655);
     cursor: pointer;
 }
-
 .removeBtn {
     background-color: rgb(255, 203, 184);
 }
@@ -190,7 +194,19 @@ header {
 .removeBtn:hover {
     background-color: rgb(251, 183, 158);
 }
-
 .read {
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 10px rgba(157, 255, 132, 0.655);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    margin-top: auto;
+}
+.footer>p {
+    color: #403020;
+    font-size: 19px;
+    font-family: Verdana, Tahoma, sans-serif
 }
