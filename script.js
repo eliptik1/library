@@ -34,8 +34,23 @@ function addBookToLibrary(){
 function displayBooks(){
     container.innerHTML = "" // clear existing book display
     for(let i = 0; i < myBook.length; i++){
-        let readStatus = myBook[i].read ? "read" : "";
-        container.innerHTML += `<h1 class="book-card ${readStatus}"> <p>Title: ${myBook[i].title}</p> <p>Author: ${myBook[i].author}</p>  <p>Pages: ${myBook[i].pages}</p>  <p>Read: ${myBook[i].read}</p> <button class="readBtn">Read</button> <button class="removeBtn">Remove</button></h1>`
+        let readClass = myBook[i].read ? "read" : "";
+        let readStatus = myBook[i].read ? "Completed" : "On progress";
+        container.innerHTML += 
+        `<div class="book-card ${readClass}">
+            <div class="description">
+                <h2>${myBook[i].title}</h2> 
+                <p>${myBook[i].author}</p>  
+                <p class="pages">${myBook[i].pages} Pages</p>
+            </div>
+            <div class="card-bottom">
+                <div class="buttons">
+                    <button class="readBtn">Read</button> 
+                    <button class="removeBtn">Remove</button>
+                </div>
+                <p class="read-status ">Status: ${readStatus}</p>
+            </div>
+        </div>`
     } 
 
     let readBtns = document.querySelectorAll(".readBtn")
