@@ -29,7 +29,10 @@ header {
     font-weight: 700;
     box-shadow: 0 1px 30px rgba(0, 0, 0, 0.5);
 }
-
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
 #btn-add {
     cursor: pointer;
     font-size: 1.25rem;
@@ -49,22 +52,70 @@ header {
 
 /* Modal screen */
 .modal {
+    color: #3f3020;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    border: 1px solid black;
     border-radius: 10px;
     z-index: 2;
-    background-color: white;
-    width: 500px;
-    max-width: 80%;
-    padding: 1rem;
+    background-color: rgb(255, 244, 220);
+    width: 400px;
     transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
 }
 .modal.active {
     transform: translate(-50%, -50%) scale(1);
 }
+.modal h3 {
+    border-radius: 10px 10px 0 0;
+    padding: 1rem;
+    color: #fbefdd;
+    background-color: rgb(117 97 76);
+}
+#book-form {
+    padding: 1rem;
+}
+#book-form input{
+    border: 1px solid rgb(118, 92, 58);
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 1rem;
+}
+#book-form input:not([type="checkbox"]){
+    width: 100%;
+    margin-bottom: 0.5rem;
+    margin-top: 0.25rem;
+}
+#book-form input[type="number"]{
+    width: 10ch;
+}
+#btn-submit {
+    display: block;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: white;
+    background-color: rgb(117 97 76);
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    margin-left: auto;
+}
+.is-read {
+    display: flex;
+    align-items: center;
+}
+#read {
+    margin-left: 0.5rem;
+    width: 20px;
+    height: 20px;
+    accent-color: white;
+}
+#btn-submit:hover {
+    background-color: rgb(144, 121, 97);
+}
+
 #overlay {
     position: fixed;
     opacity: 0;
@@ -72,7 +123,7 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     pointer-events: none; 
 }
 #overlay.active {
@@ -83,7 +134,7 @@ header {
 /* Books container */
 .books-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     margin: 1rem auto;
     max-width: 1200px;
@@ -95,7 +146,7 @@ header {
     justify-content: space-between;
     border-radius: 0.6rem;
     padding: 1rem 2rem;
-    background-color: rgb(236 227 216); /* rgb(255, 203, 184); */
+    background-color: rgb(255 241 223);
     font-size: 1.25rem;
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
 }
@@ -122,10 +173,22 @@ header {
 
 .readBtn, .removeBtn{
     width: 85px;
-    padding: 0.5rem 0.75rem;
-    border: 2px solid #664d33;
+    padding: 0.3rem 0.75rem;
+    border: none;
+    outline: 2px solid #664d33b6;
     border-radius: 8px;
-    background-color: wheat;
+    background-color: rgba(157, 255, 132, 0.655);
+    cursor: pointer;
+}
+
+.removeBtn {
+    background-color: rgb(255, 203, 184);
+}
+.readBtn:hover {
+    background-color: rgb(139, 255, 110) ;
+}
+.removeBtn:hover {
+    background-color: rgb(251, 183, 158);
 }
 
 .read {
