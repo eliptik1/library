@@ -41,6 +41,7 @@ class Library {
         readBtns.forEach((btn, index) => {btn.addEventListener("click", () => { 
             library.myBook[index].read = !library.myBook[index].read //Toggle the read status by clicking the button
             library.displayBooks()
+            populateStorage()
             })
         })
         let removeBtns = document.querySelectorAll(".removeBtn")
@@ -50,6 +51,7 @@ class Library {
                 parent.remove();
                 library.myBook.splice(index, 1)
                 library.displayBooks()
+                populateStorage()
             })
         }) 
     }
@@ -66,6 +68,7 @@ class Library {
         pagesInput.value = ""
         isReadInput.checked = false
         library.displayBooks()
+        populateStorage()
     }
 }
 const library = new Library()
@@ -98,5 +101,21 @@ form.addEventListener("submit", (e)=> {
     overlay.classList.remove("active")
     library.addBookToLibrary()
 })
+
+//Local Storage
+if(!localStorage.getItem("books")) {
+    populateStorage();
+} else {
+    setStyles();
+}
+function populateStorage() {
+    localStorage.setItem('books', JSON.stringify(library.myBook));
+    setStyles();
+}
+function setStyles() {
+    let currentBooks = JSON.parse(localStorage.getItem('books'))
+    console.log(currentBooks);
+    library.myBook = currentBooks;
+}
 
 library.displayBooks() //Display the default books in the myBook array when the page loads
