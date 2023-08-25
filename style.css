@@ -82,6 +82,12 @@ header {
 #book-form {
     padding: 1rem;
 }
+
+#book-form .error.active {
+    color: rgb(194, 37, 37);
+    margin-bottom: 0.5rem;
+}
+
 #book-form input{
     border: 1px solid rgb(118, 92, 58);
     border-radius: 10px;

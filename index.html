@@ -33,13 +33,16 @@
 
         <div id="modal" class="modal">
             <h3>Add new book</h3>
-            <form id="book-form">
+            <form id="book-form" novalidate>
                 <label for="title">Title:</label><br>
-                <input type="text" name="title" id="title" required><br>
+                <input type="text" name="title" id="title" required>
+                <div class="error"></div>
                 <label for="author">Author:</label><br>
-                <input type="text" name="author" id="author" required><br>
+                <input type="text" name="author" id="author" required>
+                <div class="error"></div>
                 <label for="pages">Pages:</label><br>
-                <input type="number" name="pages" id="pages" required><br>
+                <input type="number" name="pages" id="pages" required>
+                <div class="error"></div>
                 <div class="is-read">
                     <label for="read">Have you read it? </label>
                     <input type="checkbox" name="read" id="read">

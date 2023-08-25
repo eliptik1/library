@@ -85,22 +85,59 @@ let container = document.querySelector(".books-container")
 let modal = document.querySelector(".modal")
 let overlay = document.querySelector("#overlay")
 let titleInput = document.getElementById("title")
+let titleError = document.querySelector("#title + .error")
 let authorInput = document.getElementById("author")
+let authorError = document.querySelector("#author + .error")
 let pagesInput = document.getElementById("pages")
+let pagesError = document.querySelector("#pages + .error")
 let isReadInput = document.getElementById("read")
 
 addBtn.addEventListener("click", modalOn)
-overlay.addEventListener("click", ()=> {
+overlay.addEventListener("click", () => {
     modal.classList.remove("active")
     overlay.classList.remove("active")
 })
 
-form.addEventListener("submit", (e)=> {
+form.addEventListener("submit", (e) => {
     e.preventDefault()
-    modal.classList.remove("active")
-    overlay.classList.remove("active")
-    library.addBookToLibrary()
+    if (titleInput.validity.valid && authorInput.validity.valid && pagesInput.validity.valid) {
+        library.addBookToLibrary()
+        titleError.className = "error"
+        titleError.textContent = ""
+        authorError.className = "error"
+        authorError.textContent = ""
+        pagesError.className = "error"
+        pagesError.textContent = ""
+        modal.classList.remove("active")
+        overlay.classList.remove("active")
+    } else {
+        showError()
+    }
 })
+
+function showError() {
+    if (titleInput.validity.valueMissing) {
+        titleError.className = "error active"
+        titleError.textContent = "*Book title is required"
+    } else {
+        titleError.className = "error"
+        titleError.textContent = ""
+    }
+    if (authorInput.validity.valueMissing) {
+        authorError.className = "error active"
+        authorError.textContent = "*Book title is required"
+    } else {
+        authorError.className = "error"
+        authorError.textContent = ""
+    }
+    if (pagesInput.validity.valueMissing) {
+        pagesError.className = "error active"
+        pagesError.textContent = "*Book title is required"
+    } else {
+        pagesError.className = "error"
+        pagesError.textContent = ""
+    }
+}
 
 //Local Storage
 if(!localStorage.getItem("books")) {
@@ -114,7 +151,6 @@ function populateStorage() {
 }
 function setStyles() {
     let currentBooks = JSON.parse(localStorage.getItem('books'))
-    console.log(currentBooks);
     library.myBook = currentBooks;
 }
 
