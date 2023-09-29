@@ -1,6 +1,6 @@
 # Library
 
-This is a basic admin dashboard created using HTML and CSS.
+This is a basic library app created using HTML, CSS and JavaScript.
 
 ## Technologies Used
 
